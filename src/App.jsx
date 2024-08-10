@@ -29,8 +29,10 @@ function App() {
 
         setTimeout(function () {
           if (result) {
+            setResultClassName("tails");
             setResultClassName("heads");
           } else {
+            setResultClassName("heads");
             setResultClassName("tails");
           }
         }, 2000);
