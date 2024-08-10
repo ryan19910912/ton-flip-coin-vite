@@ -24,24 +24,22 @@ function App() {
 
     tonConnectUI.sendTransaction(transaction)
       .then(resp => {
-        console.log(resp);
         let randomNum = crypto.getRandomValues(new Uint32Array(1))[0];
         let result = Boolean(randomNum % 2);
 
-        if (result) {
-          setResultClassName("heads");
-        } else {
-          setResultClassName("tails");
-        }
+        setTimeout(function () {
+          if (result) {
+            setResultClassName("heads");
+          } else {
+            setResultClassName("tails");
+          }
+        }, 1000);
 
         setTimeout(function () {
           if (isHead == result) {
             alert('You win !! 0.02 testnet TON coins will be transferred to you.');
             // Double 轉回給 用戶
-            transfer2User(userFriendlyAddress)
-              .then(resp => {
-                console.log(resp);
-              });
+            transfer2User(userFriendlyAddress);
           } else {
             alert('You Lose !!');
           }
