@@ -61,9 +61,6 @@ function App() {
         userFriendlyAddress ?
           (
             <div>
-              <div className='ton-button'>
-                <TonConnectButton />
-              </div>
 
               <div id="coin" className={resultClassName} key={+new Date()}>
                 <div className="side-a">
@@ -81,6 +78,10 @@ function App() {
               <button className='button-right' onClick={() => startGame(false)}>
                 <h3>Tail</h3>
               </button>
+
+              <div className='ton-button'>
+                <TonConnectButton />
+              </div>
             </div>
           )
           :
