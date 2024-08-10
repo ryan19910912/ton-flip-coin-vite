@@ -33,7 +33,7 @@ function App() {
           } else {
             setResultClassName("tails");
           }
-        }, 1000);
+        }, 2000);
 
         setTimeout(function () {
           if (isHead == result) {
@@ -43,7 +43,7 @@ function App() {
           } else {
             alert('You Lose !!');
           }
-        }, 2000);
+        }, 4000);
       });
   }
 
