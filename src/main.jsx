@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
     <TonConnectUIProvider
       manifestUrl="https://ton-flip-coin.vercel.app/tonconnect-manifest.json"
       actionsConfiguration={{
-        returnStrategy: 'https://t.me/ryan_hsu_test_bot/myapp'
+        twaReturnUrl: 'https://t.me/ryan_hsu_test_bot/myapp'
       }}
     >
       <StrictMode>
