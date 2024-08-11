@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css';
-import { TonConnectButton, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
+import { TonConnectButton, useTonAddress, useTonConnectUI, CHAIN } from '@tonconnect/ui-react';
 import { transfer2User } from './api/ton_api';
+import Swal from 'sweetalert2'
 
 function App() {
   const [resultClassName, setResultClassName] = useState('heads');
@@ -16,8 +17,9 @@ function App() {
       messages: [
         {
           address: `${import.meta.env.VITE_WALLET_ADDRESS}`,
-          network: "TESTNET",
-          amount: "10000000"
+          network: CHAIN.TESTNET,
+          amount: "10000000",
+          payload: "Flip Coin Game"
         }
       ]
     }
@@ -45,11 +47,19 @@ function App() {
 
         setTimeout(function () {
           if (isHead == result) {
-            alert('You win !! 0.02 testnet TON coins will be transferred to you.');
+            Swal.fire({
+              title: "Congratulations, You Win !!",
+              text: "0.02 Testnet TON coins will be transferred to you.",
+              icon: "success"
+            });
             // Double 轉回給 用戶
             transfer2User(userFriendlyAddress);
           } else {
-            alert('You Lose !!');
+            Swal.fire({
+              title: "Sorry, You Lose !!",
+              text: "Try your luck again.",
+              icon: "error"
+            });
           }
         }, 4000);
       });

@@ -1,5 +1,6 @@
 import { TonClient, WalletContractV5R1, internal } from "@ton/ton";
 import { mnemonicToPrivateKey } from "@ton/crypto";
+import Swal from 'sweetalert2'
 
 export async function transfer2User(userAddress) {
 
@@ -18,11 +19,7 @@ export async function transfer2User(userAddress) {
 
   let walletContract = client.open(wallet);
 
-  console.log("userAddress = " + userAddress);
-  console.log("wallet address = " + wallet.address.toString());
-
   let balance = await walletContract.getBalance();
-  console.log("balance = " + balance);
 
   const seqno = await walletContract.getSeqno();
 
@@ -32,11 +29,26 @@ export async function transfer2User(userAddress) {
     messages: [
       internal({
         to: userAddress,
-        value: "0.01", // 0.05 TON
+        value: "0.02", // 0.05 TON
         body: "Flip Coin Win Reward", // optional comment
         bounce: false,
       })
     ]
   });
 
+  // wait until confirmed
+  let currentSeqno = seqno;
+  while (currentSeqno == seqno) {
+    await sleep(1500);
+    currentSeqno = await walletContract.getSeqno();
+  }
+  Swal.fire({
+    title: "Reward Transfer Successful !!",
+    text: "Please Check Your TON Wallet.",
+    icon: "success"
+  });
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
