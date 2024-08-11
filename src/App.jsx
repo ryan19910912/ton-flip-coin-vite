@@ -18,8 +18,7 @@ function App() {
         {
           address: `${import.meta.env.VITE_WALLET_ADDRESS}`,
           network: CHAIN.TESTNET,
-          amount: "10000000",
-          payload: "Flip Coin Game"
+          amount: "10000000"
         }
       ]
     }
